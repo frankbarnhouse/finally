@@ -24,10 +24,14 @@ def _make_snapshot(ticker: str, price: float, timestamp_ms: int) -> MagicMock:
     snap.last_quote = MagicMock()
     snap.last_quote.bid_price = None
     snap.last_quote.ask_price = None
+    snap.last_quote.timestamp = None
     snap.last_quote.sip_timestamp = None
+    snap.last_quote.participant_timestamp = None
+    snap.last_quote.trf_timestamp = None
     snap.min = MagicMock()
     snap.min.close = None
     snap.min.timestamp = None
+    snap.updated = None
     return snap
 
 

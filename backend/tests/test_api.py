@@ -157,7 +157,7 @@ def test_legacy_ungrouped_watchlist_is_migrated_even_if_user_changed_it(tmp_path
     conn.execute(
         "INSERT INTO users_profile (id, cash_balance, created_at) VALUES ('default', 10000.0, '2025-01-01T00:00:00+00:00')"
     )
-    changed = [ticker for ticker in LEGACY_DEFAULT_WATCHLIST if ticker != "NFLX"] + ["IBM"]
+    changed = [ticker for ticker in LEGACY_DEFAULT_WATCHLIST if ticker != "NFLX"] + ["ZM"]
     for ticker in changed:
         conn.execute(
             "INSERT INTO watchlist (id, user_id, ticker, added_at) VALUES (?, 'default', ?, '2025-01-01T00:00:00+00:00')",
@@ -171,7 +171,7 @@ def test_legacy_ungrouped_watchlist_is_migrated_even_if_user_changed_it(tmp_path
         payload = local_client.get("/api/watchlist").json()
         tickers = {item["ticker"] for item in payload["items"]}
         assert len(tickers) == 60
-        assert "IBM" not in tickers
+        assert "ZM" not in tickers
         assert "XOM" in tickers
 
 
@@ -245,10 +245,10 @@ def test_chat_handles_openrouter_http_error(tmp_path, monkeypatch):
     monkeypatch.setenv("OPENROUTER_API_KEY", "bad-key")
     monkeypatch.delenv("MASSIVE_API_KEY", raising=False)
 
-    def fake_completion(**kwargs):  # noqa: ANN003
+    async def fake_acompletion(**kwargs):  # noqa: ANN003
         raise RuntimeError("simulated litellm failure")
 
-    monkeypatch.setattr(llm_module, "completion", fake_completion)
+    monkeypatch.setattr(llm_module, "acompletion", fake_acompletion)
 
     app = create_app()
     with TestClient(app) as local_client:

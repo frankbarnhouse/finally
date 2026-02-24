@@ -475,18 +475,18 @@ def create_app() -> FastAPI:
                             conn,
                             state.price_cache,
                             TradeRequest(
-                                ticker=trade["ticker"],
-                                side=trade["side"],
-                                quantity=trade["quantity"],
+                                ticker=trade.ticker,
+                                side=trade.side,
+                                quantity=trade.quantity,
                             ),
                         )
                     )
                 except HTTPException as exc:
-                    errors.append(f"trade {trade['side']} {trade['ticker']}: {exc.detail}")
+                    errors.append(f"trade {trade.side} {trade.ticker}: {exc.detail}")
 
             for change in llm_response.watchlist_changes:
-                ticker = _ticker(change["ticker"])
-                action = change["action"]
+                ticker = _ticker(change.ticker)
+                action = change.action
                 try:
                     if action == "add":
                         _insert_watchlist_ticker(conn, ticker)
