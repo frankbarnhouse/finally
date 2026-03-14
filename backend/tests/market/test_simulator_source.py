@@ -1,11 +1,12 @@
 """Integration tests for SimulatorDataSource."""
 
 import asyncio
+from unittest.mock import patch
 
 import pytest
 
 from app.market.cache import PriceCache
-from app.market.simulator import SimulatorDataSource
+from app.market.simulator import GBMSimulator, SimulatorDataSource
 
 
 @pytest.mark.asyncio
@@ -98,15 +99,28 @@ class TestSimulatorDataSource:
         cache = PriceCache()
         source = SimulatorDataSource(price_cache=cache, update_interval=0.05)
 
-        # Start with a valid ticker
         await source.start(["AAPL"])
 
-        # Wait for some updates
-        await asyncio.sleep(0.15)
+        # Inject a one-shot error into GBMSimulator.step to verify the loop
+        # catches it and continues running rather than terminating the task.
+        call_count = 0
+        original_step = GBMSimulator.step
 
-        # Task should still be running
+        def step_with_one_error(self):
+            nonlocal call_count
+            call_count += 1
+            if call_count == 1:
+                raise RuntimeError("injected error for resilience test")
+            return original_step(self)
+
+        with patch.object(GBMSimulator, "step", step_with_one_error):
+            await asyncio.sleep(0.25)  # Several update cycles through the patch
+
+        # Task must still be alive after the injected exception
         assert source._task is not None
         assert not source._task.done()
+        # And the cache must have been updated after the error (loop continued)
+        assert cache.version > 0
 
         await source.stop()
 
