@@ -1,30 +1,15 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { createChart, IChartApi, ISeriesApi, AreaSeries } from "lightweight-charts";
+import { createChart, IChartApi, ISeriesApi, LineSeries } from "lightweight-charts";
 import { useStore } from "@/lib/store";
-import { getPortfolioHistory } from "@/lib/api";
 
-export function PnLChart() {
+export function MainChart() {
   const containerRef = useRef<HTMLDivElement>(null);
   const chartRef = useRef<IChartApi | null>(null);
-  const seriesRef = useRef<ISeriesApi<"Area"> | null>(null);
-  const portfolioHistory = useStore((s) => s.portfolioHistory);
-  const setPortfolioHistory = useStore((s) => s.setPortfolioHistory);
-
-  useEffect(() => {
-    getPortfolioHistory()
-      .then(setPortfolioHistory)
-      .catch(() => {});
-
-    const interval = setInterval(() => {
-      getPortfolioHistory()
-        .then(setPortfolioHistory)
-        .catch(() => {});
-    }, 30000);
-
-    return () => clearInterval(interval);
-  }, [setPortfolioHistory]);
+  const seriesRef = useRef<ISeriesApi<"Line"> | null>(null);
+  const selectedTicker = useStore((s) => s.selectedTicker);
+  const priceHistory = useStore((s) => s.priceHistory);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -42,14 +27,12 @@ export function PnLChart() {
       height: containerRef.current.clientHeight,
       timeScale: {
         timeVisible: true,
-        secondsVisible: false,
+        secondsVisible: true,
       },
     });
 
-    const series = chart.addSeries(AreaSeries, {
-      lineColor: "#ecad0a",
-      topColor: "rgba(236, 173, 10, 0.3)",
-      bottomColor: "rgba(236, 173, 10, 0.0)",
+    const series = chart.addSeries(LineSeries, {
+      color: "#209dd7",
       lineWidth: 2,
     });
 
@@ -71,21 +54,25 @@ export function PnLChart() {
   }, []);
 
   useEffect(() => {
-    if (!seriesRef.current) return;
+    if (!seriesRef.current || !selectedTicker) return;
 
-    const data = portfolioHistory.map((s) => ({
-      time: Math.floor(new Date(s.recorded_at).getTime() / 1000) as import("lightweight-charts").UTCTimestamp,
-      value: s.total_value,
+    const history = priceHistory[selectedTicker] || [];
+    const data = history.map((p) => ({
+      time: Math.floor(new Date(p.timestamp).getTime() / 1000) as import("lightweight-charts").UTCTimestamp,
+      value: p.price,
     }));
 
     seriesRef.current.setData(data);
     chartRef.current?.timeScale().fitContent();
-  }, [portfolioHistory]);
+  }, [selectedTicker, priceHistory]);
 
   return (
     <div className="h-full flex flex-col">
-      <div className="px-3 py-2 border-b border-border text-xs text-text-secondary">
-        Portfolio Value
+      <div className="px-3 py-2 border-b border-border text-xs flex items-center gap-2">
+        <span className="text-text-secondary">Chart:</span>
+        <span className="text-accent-yellow font-bold">
+          {selectedTicker || "Select a ticker"}
+        </span>
       </div>
       <div ref={containerRef} className="flex-1" />
     </div>
