@@ -3,7 +3,7 @@
 import pytest
 
 from app.db import get_db, close_db
-from app.services.portfolio import execute_trade, get_portfolio
+from app.services.portfolio import execute_trade, get_portfolio, record_snapshot, get_portfolio_history
 
 
 class MockPriceCache:
@@ -197,3 +197,82 @@ async def test_trade_records_trade_log(db, price_cache):
     assert row[1] == "buy"
     assert row[2] == 10
     assert row[3] == 190.50
+
+
+async def test_record_snapshot_empty_portfolio(db, price_cache):
+    """No positions: snapshot total_value equals cash (10000.0)."""
+    await record_snapshot(price_cache)
+    cursor = await db.execute(
+        "SELECT total_value FROM portfolio_snapshots WHERE user_id = 'default'"
+    )
+    row = await cursor.fetchone()
+    assert row is not None
+    assert row[0] == 10000.0
+
+
+async def test_record_snapshot_with_positions(db, price_cache):
+    """Position AAPL qty=10, price=190.50, cash=8000 -> total=8000+1905=9905."""
+    await db.execute("UPDATE users_profile SET cash_balance = 8000.0 WHERE id = 'default'")
+    await db.execute(
+        "INSERT INTO positions (user_id, ticker, quantity, avg_cost, updated_at) VALUES (?, ?, ?, ?, ?)",
+        ("default", "AAPL", 10, 180.0, "2026-01-01T00:00:00+00:00"),
+    )
+    await db.commit()
+
+    await record_snapshot(price_cache)
+    cursor = await db.execute(
+        "SELECT total_value FROM portfolio_snapshots WHERE user_id = 'default'"
+    )
+    row = await cursor.fetchone()
+    assert row is not None
+    # 8000 + 10 * 190.50 = 9905.0
+    assert row[0] == pytest.approx(9905.0, abs=0.01)
+
+
+async def test_record_snapshot_missing_price(db, price_cache):
+    """Position with no price in cache is skipped; total uses only priced positions + cash."""
+    await db.execute(
+        "INSERT INTO positions (user_id, ticker, quantity, avg_cost, updated_at) VALUES (?, ?, ?, ?, ?)",
+        ("default", "XYZ", 100, 50.0, "2026-01-01T00:00:00+00:00"),
+    )
+    await db.commit()
+
+    await record_snapshot(price_cache)
+    cursor = await db.execute(
+        "SELECT total_value FROM portfolio_snapshots WHERE user_id = 'default'"
+    )
+    row = await cursor.fetchone()
+    assert row is not None
+    # XYZ has no price, so total = cash only = 10000.0
+    assert row[0] == 10000.0
+
+
+async def test_get_portfolio_history(db, price_cache):
+    """Insert 3 snapshots, get_portfolio_history returns them ordered by recorded_at."""
+    import uuid
+
+    for i, ts in enumerate(["2026-01-01T00:00:00", "2026-01-02T00:00:00", "2026-01-03T00:00:00"]):
+        await db.execute(
+            "INSERT INTO portfolio_snapshots (id, user_id, total_value, recorded_at) VALUES (?, ?, ?, ?)",
+            (str(uuid.uuid4()), "default", 10000.0 + i * 100, ts),
+        )
+    await db.commit()
+
+    history = await get_portfolio_history()
+    assert len(history) == 3
+    assert history[0]["total_value"] == 10000.0
+    assert history[1]["total_value"] == 10100.0
+    assert history[2]["total_value"] == 10200.0
+    assert history[0]["recorded_at"] < history[1]["recorded_at"]
+
+
+async def test_trade_triggers_snapshot(db, price_cache):
+    """Execute a trade, verify portfolio_snapshots table has a new row."""
+    result, error = await execute_trade(price_cache, "AAPL", "buy", 5)
+    assert error is None
+
+    cursor = await db.execute(
+        "SELECT COUNT(*) FROM portfolio_snapshots WHERE user_id = 'default'"
+    )
+    row = await cursor.fetchone()
+    assert row[0] >= 1

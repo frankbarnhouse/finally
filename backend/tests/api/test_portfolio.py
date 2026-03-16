@@ -125,3 +125,38 @@ async def test_ticker_uppercased(db, client):
     )
     assert resp.status_code == 200
     assert resp.json()["trade"]["ticker"] == "AAPL"
+
+
+async def test_get_portfolio_history_returns_200(db, client):
+    """GET /api/portfolio/history returns 200 with list of snapshots."""
+    import uuid
+
+    # Insert a snapshot directly
+    await db.execute(
+        "INSERT INTO portfolio_snapshots (id, user_id, total_value, recorded_at) VALUES (?, ?, ?, ?)",
+        (str(uuid.uuid4()), "default", 10000.0, "2026-01-01T00:00:00"),
+    )
+    await db.commit()
+
+    resp = await client.get("/api/portfolio/history")
+    assert resp.status_code == 200
+    data = resp.json()
+    assert isinstance(data, list)
+    assert len(data) == 1
+    assert data[0]["total_value"] == 10000.0
+    assert "recorded_at" in data[0]
+
+
+async def test_trade_triggers_snapshot_via_api(db, client):
+    """POST trade, then verify snapshot was recorded."""
+    resp = await client.post(
+        "/api/portfolio/trade",
+        json={"ticker": "AAPL", "quantity": 5, "side": "buy"},
+    )
+    assert resp.status_code == 200
+
+    cursor = await db.execute(
+        "SELECT COUNT(*) FROM portfolio_snapshots WHERE user_id = 'default'"
+    )
+    row = await cursor.fetchone()
+    assert row[0] >= 1
