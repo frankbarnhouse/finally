@@ -70,6 +70,7 @@ Users can interact with a live-updating trading terminal where an AI assistant c
 
 ## Constraints
 
+- **Latest stable versions**: Use latest stable Node.js, Next.js, and Python (not preview/RC)
 - **Single container**: One Docker container, one port (8000), no docker-compose for production
 - **Package manager**: uv for Python, npm for Node — always `uv run`, never `python3` directly
 - **No CORS**: Static Next.js export served by FastAPI on same origin
