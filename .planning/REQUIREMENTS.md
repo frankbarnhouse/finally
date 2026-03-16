@@ -27,8 +27,8 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **PORT-03**: User can execute sell market orders filled at current price
 - [x] **PORT-04**: Trade validation rejects insufficient cash (buy) or insufficient shares (sell)
 - [x] **PORT-05**: Selling entire position removes the position row (position returns null)
-- [ ] **PORT-06**: Portfolio snapshots recorded every 30 seconds and immediately after each trade
-- [ ] **PORT-07**: User can retrieve portfolio value history for P&L chart
+- [x] **PORT-06**: Portfolio snapshots recorded every 30 seconds and immediately after each trade
+- [x] **PORT-07**: User can retrieve portfolio value history for P&L chart
 
 ### LLM Chat
 
@@ -112,8 +112,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PORT-03 | Phase 2 | Complete |
 | PORT-04 | Phase 2 | Complete |
 | PORT-05 | Phase 2 | Complete |
-| PORT-06 | Phase 2 | Pending |
-| PORT-07 | Phase 2 | Pending |
+| PORT-06 | Phase 2 | Complete |
+| PORT-07 | Phase 2 | Complete |
 | CHAT-01 | Phase 3 | Pending |
 | CHAT-02 | Phase 3 | Pending |
 | CHAT-03 | Phase 3 | Pending |
