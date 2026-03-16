@@ -45,12 +45,12 @@ Plans:
   3. Attempting to buy with insufficient cash or sell more shares than owned returns a clear error message
   4. User can view, add, and remove tickers from their watchlist, and the watchlist reflects in the SSE price stream
   5. Portfolio value snapshots are recorded every 30 seconds and immediately after each trade, retrievable for charting
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 02-01: TBD
-- [ ] 02-02: TBD
-- [ ] 02-03: TBD
+- [ ] 02-01-PLAN.md — Portfolio service layer and trade execution API (GET /api/portfolio, POST /api/portfolio/trade)
+- [ ] 02-02-PLAN.md — Watchlist CRUD API and health check endpoint
+- [ ] 02-03-PLAN.md — Portfolio snapshots, history endpoint, and FastAPI app wiring
 
 ### Phase 3: LLM Chat Integration
 **Goal**: Users can converse with an AI assistant that understands their portfolio and can execute trades and manage the watchlist through natural language
