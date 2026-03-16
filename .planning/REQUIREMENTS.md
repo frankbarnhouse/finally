@@ -16,9 +16,9 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Watchlist
 
-- [ ] **WATCH-01**: User can view watchlist tickers with latest prices
-- [ ] **WATCH-02**: User can add a ticker to the watchlist
-- [ ] **WATCH-03**: User can remove a ticker from the watchlist
+- [x] **WATCH-01**: User can view watchlist tickers with latest prices
+- [x] **WATCH-02**: User can add a ticker to the watchlist
+- [x] **WATCH-03**: User can remove a ticker from the watchlist
 
 ### Portfolio
 
@@ -59,7 +59,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **INFRA-01**: Multi-stage Dockerfile (latest stable Node → latest stable Python)
 - [ ] **INFRA-02**: Start/stop shell scripts for macOS/Linux
 - [ ] **INFRA-03**: Start/stop PowerShell scripts for Windows
-- [ ] **INFRA-04**: Health check endpoint (GET /api/health)
+- [x] **INFRA-04**: Health check endpoint (GET /api/health)
 
 ### Testing
 
@@ -104,9 +104,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | DB-02 | Phase 1 | Complete |
 | DB-03 | Phase 1 | Complete |
 | DB-04 | Phase 1 | Complete |
-| WATCH-01 | Phase 2 | Pending |
-| WATCH-02 | Phase 2 | Pending |
-| WATCH-03 | Phase 2 | Pending |
+| WATCH-01 | Phase 2 | Complete |
+| WATCH-02 | Phase 2 | Complete |
+| WATCH-03 | Phase 2 | Complete |
 | PORT-01 | Phase 2 | Pending |
 | PORT-02 | Phase 2 | Pending |
 | PORT-03 | Phase 2 | Pending |
@@ -135,7 +135,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INFRA-01 | Phase 5 | Pending |
 | INFRA-02 | Phase 5 | Pending |
 | INFRA-03 | Phase 5 | Pending |
-| INFRA-04 | Phase 2 | Pending |
+| INFRA-04 | Phase 2 | Complete |
 | TEST-01 | Phase 6 | Pending |
 | TEST-02 | Phase 6 | Pending |
 | TEST-03 | Phase 6 | Pending |
