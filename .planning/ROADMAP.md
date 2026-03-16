@@ -62,11 +62,11 @@ Plans:
   3. When the user asks the AI to add or remove a watchlist ticker, the change happens automatically
   4. If an AI-initiated trade or watchlist action fails validation, the failure reason appears in the response message text
   5. Setting LLM_MOCK=true produces deterministic responses without calling any external API
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 03-01: TBD
-- [ ] 03-02: TBD
+- [ ] 03-01-PLAN.md — Chat service layer with LLM integration, mock mode, auto-execution, and service-level tests
+- [ ] 03-02-PLAN.md — Chat API router, app wiring, and HTTP-level tests
 
 ### Phase 4: Trading Terminal Frontend
 **Goal**: Users see a visually stunning, live-updating trading terminal in the browser with all panels operational
