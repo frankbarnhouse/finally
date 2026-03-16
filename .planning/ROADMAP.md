@@ -13,7 +13,7 @@ FinAlly is a brownfield project with a complete market data subsystem (simulator
 Decimal phases appear between their surrounding integers in numeric order.
 
 - [x] **Phase 1: Database Foundation** - SQLite layer with lazy init, schema creation, seed data, and WAL mode (completed 2026-03-16)
-- [ ] **Phase 2: Portfolio and Watchlist APIs** - Trade execution, positions, watchlist CRUD, portfolio snapshots, health check
+- [x] **Phase 2: Portfolio and Watchlist APIs** - Trade execution, positions, watchlist CRUD, portfolio snapshots, health check (completed 2026-03-16)
 - [ ] **Phase 3: LLM Chat Integration** - AI assistant with portfolio context, structured outputs, auto-execution, and mock mode
 - [ ] **Phase 4: Trading Terminal Frontend** - Dark Bloomberg-inspired UI with live prices, charts, portfolio visualizations, trade bar, and chat panel
 - [ ] **Phase 5: Docker and Scripts** - Multi-stage Dockerfile, start/stop scripts, single-container deployment
@@ -45,7 +45,7 @@ Plans:
   3. Attempting to buy with insufficient cash or sell more shares than owned returns a clear error message
   4. User can view, add, and remove tickers from their watchlist, and the watchlist reflects in the SSE price stream
   5. Portfolio value snapshots are recorded every 30 seconds and immediately after each trade, retrievable for charting
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 
 Plans:
 - [ ] 02-01-PLAN.md — Portfolio service layer and trade execution API (GET /api/portfolio, POST /api/portfolio/trade)
@@ -123,7 +123,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
 | 1. Database Foundation | 1/1 | Complete    | 2026-03-16 |
-| 2. Portfolio and Watchlist APIs | 0/3 | Not started | - |
+| 2. Portfolio and Watchlist APIs | 0/3 | Complete    | 2026-03-16 |
 | 3. LLM Chat Integration | 0/2 | Not started | - |
 | 4. Trading Terminal Frontend | 0/4 | Not started | - |
 | 5. Docker and Scripts | 0/1 | Not started | - |
