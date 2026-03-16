@@ -30,11 +30,10 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. The default user profile exists with $10,000 cash balance after initialization
   3. The default watchlist contains exactly 10 tickers (AAPL, GOOGL, MSFT, AMZN, TSLA, NVDA, META, JPM, V, NFLX) after initialization
   4. SQLite is configured with WAL mode and busy_timeout so concurrent async operations do not produce "database is locked" errors
-**Plans**: TBD
+**Plans:** 1 plan
 
 Plans:
-- [ ] 01-01: TBD
-- [ ] 01-02: TBD
+- [ ] 01-01-PLAN.md — SQLite module with lazy init, schema, seed data, WAL config, and tests
 
 ### Phase 2: Portfolio and Watchlist APIs
 **Goal**: Users can trade, view positions, manage their watchlist, and the system records portfolio history
@@ -123,7 +122,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Database Foundation | 0/2 | Not started | - |
+| 1. Database Foundation | 0/1 | Planning complete | - |
 | 2. Portfolio and Watchlist APIs | 0/3 | Not started | - |
 | 3. LLM Chat Integration | 0/2 | Not started | - |
 | 4. Trading Terminal Frontend | 0/4 | Not started | - |
