@@ -12,12 +12,14 @@ interface HeaderProps {
 const statusColors: Record<ConnectionStatus, string> = {
   connected: "bg-gain",
   connecting: "bg-accent-yellow",
+  reconnecting: "bg-accent-yellow",
   disconnected: "bg-loss",
 };
 
 const statusLabels: Record<ConnectionStatus, string> = {
   connected: "Live",
   connecting: "Connecting...",
+  reconnecting: "Reconnecting...",
   disconnected: "Disconnected",
 };
 

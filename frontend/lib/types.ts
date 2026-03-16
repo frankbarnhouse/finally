@@ -90,4 +90,4 @@ export interface ChatResponse {
 }
 
 /** Connection status for SSE */
-export type ConnectionStatus = "connected" | "connecting" | "disconnected";
+export type ConnectionStatus = "connected" | "connecting" | "disconnected" | "reconnecting";

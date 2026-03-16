@@ -9,7 +9,7 @@ import Watchlist from "@/components/Watchlist";
 import PriceChart from "@/components/PriceChart";
 import PositionsTable from "@/components/PositionsTable";
 import PortfolioHeatmap from "@/components/PortfolioHeatmap";
-import PnlChart from "@/components/PnlChart";
+import { PnLChart as PnlChart } from "@/components/PnLChart";
 import TradeBar from "@/components/TradeBar";
 import ChatPanel from "@/components/ChatPanel";
 

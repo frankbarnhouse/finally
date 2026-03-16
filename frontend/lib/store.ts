@@ -18,7 +18,7 @@ interface AppState {
   updatePrice: (update: PriceUpdate) => void;
 
   // Price history for sparklines (accumulated since page load)
-  priceHistory: Record<string, { price: number; timestamp: string }[]>;
+  priceHistory: Record<string, { price: number; timestamp: number }[]>;
 
   // Watchlist
   watchlist: WatchlistItem[];
