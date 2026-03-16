@@ -32,12 +32,12 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### LLM Chat
 
-- [ ] **CHAT-01**: User can send messages and receive AI responses with full portfolio context
-- [ ] **CHAT-02**: AI can auto-execute trades via structured JSON output
-- [ ] **CHAT-03**: AI can add/remove watchlist tickers via structured JSON output
-- [ ] **CHAT-04**: Last 10 conversation messages included in LLM context
-- [ ] **CHAT-05**: LLM mock mode returns deterministic responses when LLM_MOCK=true
-- [ ] **CHAT-06**: Failed trade/watchlist actions appended to response message text
+- [x] **CHAT-01**: User can send messages and receive AI responses with full portfolio context
+- [x] **CHAT-02**: AI can auto-execute trades via structured JSON output
+- [x] **CHAT-03**: AI can add/remove watchlist tickers via structured JSON output
+- [x] **CHAT-04**: Last 10 conversation messages included in LLM context
+- [x] **CHAT-05**: LLM mock mode returns deterministic responses when LLM_MOCK=true
+- [x] **CHAT-06**: Failed trade/watchlist actions appended to response message text
 
 ### Frontend
 
@@ -114,12 +114,12 @@ Which phases cover which requirements. Updated during roadmap creation.
 | PORT-05 | Phase 2 | Complete |
 | PORT-06 | Phase 2 | Complete |
 | PORT-07 | Phase 2 | Complete |
-| CHAT-01 | Phase 3 | Pending |
-| CHAT-02 | Phase 3 | Pending |
-| CHAT-03 | Phase 3 | Pending |
-| CHAT-04 | Phase 3 | Pending |
-| CHAT-05 | Phase 3 | Pending |
-| CHAT-06 | Phase 3 | Pending |
+| CHAT-01 | Phase 3 | Complete |
+| CHAT-02 | Phase 3 | Complete |
+| CHAT-03 | Phase 3 | Complete |
+| CHAT-04 | Phase 3 | Complete |
+| CHAT-05 | Phase 3 | Complete |
+| CHAT-06 | Phase 3 | Complete |
 | UI-01 | Phase 4 | Pending |
 | UI-02 | Phase 4 | Pending |
 | UI-03 | Phase 4 | Pending |
