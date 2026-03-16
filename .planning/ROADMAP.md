@@ -12,7 +12,7 @@ FinAlly is a brownfield project with a complete market data subsystem (simulator
 
 Decimal phases appear between their surrounding integers in numeric order.
 
-- [ ] **Phase 1: Database Foundation** - SQLite layer with lazy init, schema creation, seed data, and WAL mode
+- [x] **Phase 1: Database Foundation** - SQLite layer with lazy init, schema creation, seed data, and WAL mode (completed 2026-03-16)
 - [ ] **Phase 2: Portfolio and Watchlist APIs** - Trade execution, positions, watchlist CRUD, portfolio snapshots, health check
 - [ ] **Phase 3: LLM Chat Integration** - AI assistant with portfolio context, structured outputs, auto-execution, and mock mode
 - [ ] **Phase 4: Trading Terminal Frontend** - Dark Bloomberg-inspired UI with live prices, charts, portfolio visualizations, trade bar, and chat panel
@@ -30,7 +30,7 @@ Decimal phases appear between their surrounding integers in numeric order.
   2. The default user profile exists with $10,000 cash balance after initialization
   3. The default watchlist contains exactly 10 tickers (AAPL, GOOGL, MSFT, AMZN, TSLA, NVDA, META, JPM, V, NFLX) after initialization
   4. SQLite is configured with WAL mode and busy_timeout so concurrent async operations do not produce "database is locked" errors
-**Plans:** 1 plan
+**Plans:** 1/1 plans complete
 
 Plans:
 - [ ] 01-01-PLAN.md — SQLite module with lazy init, schema, seed data, WAL config, and tests
@@ -122,7 +122,7 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 
 | Phase | Plans Complete | Status | Completed |
 |-------|----------------|--------|-----------|
-| 1. Database Foundation | 0/1 | Planning complete | - |
+| 1. Database Foundation | 1/1 | Complete   | 2026-03-16 |
 | 2. Portfolio and Watchlist APIs | 0/3 | Not started | - |
 | 3. LLM Chat Integration | 0/2 | Not started | - |
 | 4. Trading Terminal Frontend | 0/4 | Not started | - |
