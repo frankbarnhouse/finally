@@ -19,7 +19,7 @@ created: 2026-03-16
 |----------|-------|
 | **Framework** | pytest 8.3+ with pytest-asyncio |
 | **Config file** | `backend/pyproject.toml` (pytest section exists) |
-| **Quick run command** | `cd backend && uv run pytest tests/test_db.py -x -q` |
+| **Quick run command** | `cd backend && uv run pytest tests/db/test_init.py -x -q` |
 | **Full suite command** | `cd backend && uv run pytest tests/ -x -q` |
 | **Estimated runtime** | ~3 seconds |
 
@@ -27,7 +27,7 @@ created: 2026-03-16
 
 ## Sampling Rate
 
-- **After every task commit:** Run `cd backend && uv run pytest tests/test_db.py -x -q`
+- **After every task commit:** Run `cd backend && uv run pytest tests/db/test_init.py -x -q`
 - **After every plan wave:** Run `cd backend && uv run pytest tests/ -x -q`
 - **Before `/gsd:verify-work`:** Full suite must be green
 - **Max feedback latency:** 5 seconds
@@ -38,10 +38,10 @@ created: 2026-03-16
 
 | Task ID | Plan | Wave | Requirement | Test Type | Automated Command | File Exists | Status |
 |---------|------|------|-------------|-----------|-------------------|-------------|--------|
-| 1-01-01 | 01 | 1 | DB-01 | unit | `uv run pytest tests/test_db.py::test_schema_creation -x` | ❌ W0 | ⬜ pending |
-| 1-01-02 | 01 | 1 | DB-02 | unit | `uv run pytest tests/test_db.py::test_default_user -x` | ❌ W0 | ⬜ pending |
-| 1-01-03 | 01 | 1 | DB-03 | unit | `uv run pytest tests/test_db.py::test_default_watchlist -x` | ❌ W0 | ⬜ pending |
-| 1-01-04 | 01 | 1 | DB-04 | unit | `uv run pytest tests/test_db.py::test_wal_mode -x` | ❌ W0 | ⬜ pending |
+| 1-01-01 | 01 | 1 | DB-01 | unit | `uv run pytest tests/db/test_init.py::test_schema_creation -x` | ❌ W0 | ⬜ pending |
+| 1-01-02 | 01 | 1 | DB-02 | unit | `uv run pytest tests/db/test_init.py::test_default_user -x` | ❌ W0 | ⬜ pending |
+| 1-01-03 | 01 | 1 | DB-03 | unit | `uv run pytest tests/db/test_init.py::test_default_watchlist -x` | ❌ W0 | ⬜ pending |
+| 1-01-04 | 01 | 1 | DB-04 | unit | `uv run pytest tests/db/test_init.py::test_wal_mode -x` | ❌ W0 | ⬜ pending |
 
 *Status: ⬜ pending · ✅ green · ❌ red · ⚠️ flaky*
 
@@ -49,7 +49,7 @@ created: 2026-03-16
 
 ## Wave 0 Requirements
 
-- [ ] `backend/tests/test_db.py` — stubs for DB-01, DB-02, DB-03, DB-04
+- [ ] `backend/tests/db/test_init.py` — stubs for DB-01, DB-02, DB-03, DB-04
 - [ ] `backend/tests/conftest.py` — shared fixtures (temp db path, async event loop)
 
 *Existing pytest infrastructure covers framework needs.*
