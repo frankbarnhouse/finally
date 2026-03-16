@@ -22,11 +22,11 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Portfolio
 
-- [ ] **PORT-01**: User can view all positions with cash balance and total portfolio value
-- [ ] **PORT-02**: User can execute buy market orders filled at current price
-- [ ] **PORT-03**: User can execute sell market orders filled at current price
-- [ ] **PORT-04**: Trade validation rejects insufficient cash (buy) or insufficient shares (sell)
-- [ ] **PORT-05**: Selling entire position removes the position row (position returns null)
+- [x] **PORT-01**: User can view all positions with cash balance and total portfolio value
+- [x] **PORT-02**: User can execute buy market orders filled at current price
+- [x] **PORT-03**: User can execute sell market orders filled at current price
+- [x] **PORT-04**: Trade validation rejects insufficient cash (buy) or insufficient shares (sell)
+- [x] **PORT-05**: Selling entire position removes the position row (position returns null)
 - [ ] **PORT-06**: Portfolio snapshots recorded every 30 seconds and immediately after each trade
 - [ ] **PORT-07**: User can retrieve portfolio value history for P&L chart
 
@@ -107,11 +107,11 @@ Which phases cover which requirements. Updated during roadmap creation.
 | WATCH-01 | Phase 2 | Complete |
 | WATCH-02 | Phase 2 | Complete |
 | WATCH-03 | Phase 2 | Complete |
-| PORT-01 | Phase 2 | Pending |
-| PORT-02 | Phase 2 | Pending |
-| PORT-03 | Phase 2 | Pending |
-| PORT-04 | Phase 2 | Pending |
-| PORT-05 | Phase 2 | Pending |
+| PORT-01 | Phase 2 | Complete |
+| PORT-02 | Phase 2 | Complete |
+| PORT-03 | Phase 2 | Complete |
+| PORT-04 | Phase 2 | Complete |
+| PORT-05 | Phase 2 | Complete |
 | PORT-06 | Phase 2 | Pending |
 | PORT-07 | Phase 2 | Pending |
 | CHAT-01 | Phase 3 | Pending |
