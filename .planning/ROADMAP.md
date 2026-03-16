@@ -78,13 +78,13 @@ Plans:
   3. Clicking a ticker in the watchlist displays a larger price chart in the main chart area
   4. The portfolio section shows a heatmap (treemap) of positions colored by P&L, a P&L line chart of portfolio value over time, and a positions table with unrealized P&L
   5. The trade bar allows buying and selling shares, the chat panel allows conversing with the AI (with inline action confirmations), and the header displays live portfolio value, cash balance, and connection status
-**Plans**: TBD
+**Plans:** 4 plans
 
 Plans:
-- [ ] 04-01: TBD
-- [ ] 04-02: TBD
-- [ ] 04-03: TBD
-- [ ] 04-04: TBD
+- [ ] 04-01-PLAN.md — Scaffold Next.js 15, Tailwind v4, types, stores, hooks, API client, Header, layout shell
+- [ ] 04-02-PLAN.md — Watchlist with live prices, flash animations, sparklines, and main chart
+- [ ] 04-03-PLAN.md — Portfolio heatmap (treemap), P&L chart, positions table
+- [ ] 04-04-PLAN.md — Trade bar, chat panel with inline actions, final layout assembly
 
 ### Phase 5: Docker and Scripts
 **Goal**: Users can launch the entire application with a single Docker command or shell script
@@ -125,6 +125,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 1. Database Foundation | 1/1 | Complete    | 2026-03-16 |
 | 2. Portfolio and Watchlist APIs | 0/3 | Complete    | 2026-03-16 |
 | 3. LLM Chat Integration | 2/2 | Complete    | 2026-03-16 |
-| 4. Trading Terminal Frontend | 0/4 | Not started | - |
+| 4. Trading Terminal Frontend | 0/4 | In progress | - |
 | 5. Docker and Scripts | 0/1 | Not started | - |
 | 6. Testing | 0/3 | Not started | - |
