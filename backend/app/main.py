@@ -6,11 +6,12 @@ from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.staticfiles import StaticFiles  # noqa: F401 — used in Phase 4
 
-from app.db import get_db, close_db, DEFAULT_TICKERS
-from app.market import PriceCache, create_market_data_source, create_stream_router
+from app.api.chat import create_chat_router
+from app.api.health import create_health_router
 from app.api.portfolio import create_portfolio_router
 from app.api.watchlist import create_watchlist_router
-from app.api.health import create_health_router
+from app.db import DEFAULT_TICKERS, close_db, get_db
+from app.market import PriceCache, create_market_data_source, create_stream_router
 from app.services.portfolio import record_snapshot
 
 price_cache = PriceCache()
@@ -50,4 +51,5 @@ app = FastAPI(title="FinAlly", lifespan=lifespan)
 app.include_router(create_stream_router(price_cache))
 app.include_router(create_portfolio_router(price_cache))
 app.include_router(create_watchlist_router(price_cache, data_source))
+app.include_router(create_chat_router(price_cache, data_source))
 app.include_router(create_health_router())

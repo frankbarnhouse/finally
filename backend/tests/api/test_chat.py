@@ -6,9 +6,9 @@ import pytest
 from fastapi import FastAPI
 from httpx import ASGITransport, AsyncClient
 
-from app.db import get_db, close_db
-from app.market import PriceCache, MarketDataSource
 from app.api.chat import create_chat_router
+from app.db import close_db, get_db
+from app.market import MarketDataSource, PriceCache
 
 
 @pytest.fixture
