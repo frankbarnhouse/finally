@@ -5,7 +5,7 @@ from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
 from app.market import PriceCache
-from app.services.portfolio import execute_trade, get_portfolio
+from app.services.portfolio import execute_trade, get_portfolio, get_portfolio_history
 
 
 class TradeRequest(BaseModel):
@@ -23,6 +23,10 @@ def create_portfolio_router(price_cache: PriceCache) -> APIRouter:
     @router.get("")
     async def get_portfolio_endpoint():
         return await get_portfolio(price_cache)
+
+    @router.get("/history")
+    async def get_portfolio_history_endpoint():
+        return await get_portfolio_history()
 
     @router.post("/trade")
     async def trade_endpoint(req: TradeRequest):

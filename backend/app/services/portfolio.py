@@ -157,6 +157,8 @@ async def execute_trade(
 
         await db.execute("COMMIT")
 
+        await record_snapshot(price_cache)
+
         return {
             "trade": {
                 "ticker": ticker,
@@ -172,3 +174,43 @@ async def execute_trade(
     except Exception:
         await db.execute("ROLLBACK")
         raise
+
+
+async def record_snapshot(price_cache) -> None:
+    """Calculate and store current portfolio total value."""
+    db = await get_db()
+    user_id = "default"
+    cursor = await db.execute(
+        "SELECT cash_balance FROM users_profile WHERE id = ?", (user_id,)
+    )
+    row = await cursor.fetchone()
+    cash = row[0]
+
+    cursor = await db.execute(
+        "SELECT ticker, quantity FROM positions WHERE user_id = ?", (user_id,)
+    )
+    positions = await cursor.fetchall()
+
+    total = cash
+    for pos in positions:
+        price = price_cache.get_price(pos[0])
+        if price is not None:
+            total += pos[1] * price
+
+    now = datetime.now(timezone.utc).isoformat()
+    await db.execute(
+        "INSERT INTO portfolio_snapshots (id, user_id, total_value, recorded_at) VALUES (?, ?, ?, ?)",
+        (str(uuid.uuid4()), user_id, round(total, 2), now),
+    )
+    await db.commit()
+
+
+async def get_portfolio_history() -> list[dict]:
+    """Return portfolio value snapshots ordered by time."""
+    db = await get_db()
+    cursor = await db.execute(
+        "SELECT total_value, recorded_at FROM portfolio_snapshots WHERE user_id = ? ORDER BY recorded_at ASC",
+        ("default",),
+    )
+    rows = await cursor.fetchall()
+    return [{"total_value": row[0], "recorded_at": row[1]} for row in rows]
