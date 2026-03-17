@@ -42,10 +42,10 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Frontend
 
 - [x] **UI-01**: Dark trading terminal layout with Bloomberg-inspired aesthetic (backgrounds ~#0d1117)
-- [ ] **UI-02**: Watchlist panel with live-updating prices from SSE stream
-- [ ] **UI-03**: Price flash animations (green uptick, red downtick) fading over ~500ms
-- [ ] **UI-04**: Sparkline mini-charts in watchlist accumulated from SSE since page load
-- [ ] **UI-05**: Main chart area showing selected ticker price history (click ticker to select)
+- [x] **UI-02**: Watchlist panel with live-updating prices from SSE stream
+- [x] **UI-03**: Price flash animations (green uptick, red downtick) fading over ~500ms
+- [x] **UI-04**: Sparkline mini-charts in watchlist accumulated from SSE since page load
+- [x] **UI-05**: Main chart area showing selected ticker price history (click ticker to select)
 - [ ] **UI-06**: Portfolio heatmap (treemap) sized by position weight, colored by P&L
 - [ ] **UI-07**: P&L line chart showing portfolio value over time from snapshots
 - [ ] **UI-08**: Positions table: ticker, quantity, avg cost, current price, unrealized P&L, % change
@@ -121,10 +121,10 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CHAT-05 | Phase 3 | Complete |
 | CHAT-06 | Phase 3 | Complete |
 | UI-01 | Phase 4 | Complete |
-| UI-02 | Phase 4 | Pending |
-| UI-03 | Phase 4 | Pending |
-| UI-04 | Phase 4 | Pending |
-| UI-05 | Phase 4 | Pending |
+| UI-02 | Phase 4 | Complete |
+| UI-03 | Phase 4 | Complete |
+| UI-04 | Phase 4 | Complete |
+| UI-05 | Phase 4 | Complete |
 | UI-06 | Phase 4 | Pending |
 | UI-07 | Phase 4 | Pending |
 | UI-08 | Phase 4 | Pending |
