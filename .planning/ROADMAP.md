@@ -109,12 +109,12 @@ Plans:
   2. Backend unit tests verify LLM structured output parsing handles valid schemas, malformed responses, and failed action reporting
   3. Frontend unit tests verify key component behaviors (price flash animation triggers, portfolio display calculations)
   4. Playwright E2E tests run against the Docker container with LLM_MOCK=true and verify core user flows (prices streaming, watchlist CRUD, buy/sell, chat interaction)
-**Plans**: TBD
+**Plans:** 3 plans
 
 Plans:
-- [ ] 06-01: TBD
-- [ ] 06-02: TBD
-- [ ] 06-03: TBD
+- [ ] 06-01-PLAN.md — Backend unit tests for trade edge cases and LLM structured output parsing
+- [ ] 06-02-PLAN.md — Frontend unit tests for price flash animation and portfolio display calculations
+- [ ] 06-03-PLAN.md — Playwright E2E test infrastructure and core test scenarios
 
 ## Progress
 
