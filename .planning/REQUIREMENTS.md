@@ -46,9 +46,9 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **UI-03**: Price flash animations (green uptick, red downtick) fading over ~500ms
 - [x] **UI-04**: Sparkline mini-charts in watchlist accumulated from SSE since page load
 - [x] **UI-05**: Main chart area showing selected ticker price history (click ticker to select)
-- [ ] **UI-06**: Portfolio heatmap (treemap) sized by position weight, colored by P&L
-- [ ] **UI-07**: P&L line chart showing portfolio value over time from snapshots
-- [ ] **UI-08**: Positions table: ticker, quantity, avg cost, current price, unrealized P&L, % change
+- [x] **UI-06**: Portfolio heatmap (treemap) sized by position weight, colored by P&L
+- [x] **UI-07**: P&L line chart showing portfolio value over time from snapshots
+- [x] **UI-08**: Positions table: ticker, quantity, avg cost, current price, unrealized P&L, % change
 - [ ] **UI-09**: Trade bar with ticker input, quantity input, buy button, sell button
 - [ ] **UI-10**: AI chat panel with message input, scrolling history, loading indicator
 - [ ] **UI-11**: Inline trade and watchlist action confirmations rendered in chat messages
@@ -125,9 +125,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | UI-03 | Phase 4 | Complete |
 | UI-04 | Phase 4 | Complete |
 | UI-05 | Phase 4 | Complete |
-| UI-06 | Phase 4 | Pending |
-| UI-07 | Phase 4 | Pending |
-| UI-08 | Phase 4 | Pending |
+| UI-06 | Phase 4 | Complete |
+| UI-07 | Phase 4 | Complete |
+| UI-08 | Phase 4 | Complete |
 | UI-09 | Phase 4 | Pending |
 | UI-10 | Phase 4 | Pending |
 | UI-11 | Phase 4 | Pending |

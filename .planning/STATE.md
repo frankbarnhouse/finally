@@ -57,6 +57,7 @@ Progress: [█████████-] 90%
 | Phase 03 P02 | 2 min | 2 tasks | 3 files |
 | Phase 04-trading-terminal-frontend P01 | 7 min | 3 tasks | 18 files |
 | Phase 04-trading-terminal-frontend P02 | 6 min | 2 tasks | 8 files |
+| Phase 04-trading-terminal-frontend P03 | 7 min | 2 tasks | 6 files |
 
 ## Accumulated Context
 
@@ -80,6 +81,7 @@ Recent decisions affecting current work:
 - [Phase 04]: create-next-app@15.5 ships React 19 + Tailwind v4 natively
 - [Phase 04]: SVG polyline sparklines preferred over LW Charts at small sizes (100x30px)
 - [Phase 04]: addAreaSeries() for LW Charts v4.2.3 (not addSeries(AreaSeries) from newer API)
+- [Phase 04]: HierarchyRectangularNode cast for d3 treemap leaf coordinates
 
 ### Pending Todos
 
@@ -92,6 +94,6 @@ None yet.
 
 ## Session Continuity
 
-Last session: 2026-03-17T07:30:27Z
-Stopped at: Completed 04-02-PLAN.md
+Last session: 2026-03-17T07:31:44Z
+Stopped at: Completed 04-03-PLAN.md
 Resume file: None
