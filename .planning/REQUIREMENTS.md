@@ -41,7 +41,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 ### Frontend
 
-- [ ] **UI-01**: Dark trading terminal layout with Bloomberg-inspired aesthetic (backgrounds ~#0d1117)
+- [x] **UI-01**: Dark trading terminal layout with Bloomberg-inspired aesthetic (backgrounds ~#0d1117)
 - [ ] **UI-02**: Watchlist panel with live-updating prices from SSE stream
 - [ ] **UI-03**: Price flash animations (green uptick, red downtick) fading over ~500ms
 - [ ] **UI-04**: Sparkline mini-charts in watchlist accumulated from SSE since page load
@@ -52,7 +52,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [ ] **UI-09**: Trade bar with ticker input, quantity input, buy button, sell button
 - [ ] **UI-10**: AI chat panel with message input, scrolling history, loading indicator
 - [ ] **UI-11**: Inline trade and watchlist action confirmations rendered in chat messages
-- [ ] **UI-12**: Header with live portfolio total value, cash balance, and connection status dot
+- [x] **UI-12**: Header with live portfolio total value, cash balance, and connection status dot
 
 ### Infrastructure
 
@@ -120,7 +120,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | CHAT-04 | Phase 3 | Complete |
 | CHAT-05 | Phase 3 | Complete |
 | CHAT-06 | Phase 3 | Complete |
-| UI-01 | Phase 4 | Pending |
+| UI-01 | Phase 4 | Complete |
 | UI-02 | Phase 4 | Pending |
 | UI-03 | Phase 4 | Pending |
 | UI-04 | Phase 4 | Pending |
@@ -131,7 +131,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | UI-09 | Phase 4 | Pending |
 | UI-10 | Phase 4 | Pending |
 | UI-11 | Phase 4 | Pending |
-| UI-12 | Phase 4 | Pending |
+| UI-12 | Phase 4 | Complete |
 | INFRA-01 | Phase 5 | Pending |
 | INFRA-02 | Phase 5 | Pending |
 | INFRA-03 | Phase 5 | Pending |

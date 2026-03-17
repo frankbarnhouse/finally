@@ -125,6 +125,6 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 1. Database Foundation | 1/1 | Complete    | 2026-03-16 |
 | 2. Portfolio and Watchlist APIs | 0/3 | Complete    | 2026-03-16 |
 | 3. LLM Chat Integration | 2/2 | Complete    | 2026-03-16 |
-| 4. Trading Terminal Frontend | 0/4 | In progress | - |
+| 4. Trading Terminal Frontend | 1/4 | In progress | - |
 | 5. Docker and Scripts | 0/1 | Not started | - |
 | 6. Testing | 0/3 | Not started | - |
