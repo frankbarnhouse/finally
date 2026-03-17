@@ -66,7 +66,7 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **TEST-01**: Backend unit tests for trade execution logic and edge cases
 - [x] **TEST-02**: Backend unit tests for LLM structured output parsing
 - [x] **TEST-03**: Frontend unit tests for key components (price flash, portfolio display)
-- [ ] **TEST-04**: E2E tests with Playwright using LLM mock mode
+- [x] **TEST-04**: E2E tests with Playwright using LLM mock mode
 
 ## v2 Requirements
 
@@ -139,7 +139,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | TEST-01 | Phase 6 | Complete |
 | TEST-02 | Phase 6 | Complete |
 | TEST-03 | Phase 6 | Complete |
-| TEST-04 | Phase 6 | Pending |
+| TEST-04 | Phase 6 | Complete |
 
 **Coverage:**
 - v1 requirements: 40 total
