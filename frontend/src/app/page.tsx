@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
 import { useSSE } from "@/hooks/useSSE";
 import { Header } from "@/components/Header";
+import { Watchlist } from "@/components/Watchlist";
+import { MainChart } from "@/components/MainChart";
 
 function Placeholder({ label }: { label: string }) {
   return (
@@ -13,15 +16,19 @@ function Placeholder({ label }: { label: string }) {
 
 export default function Home() {
   useSSE();
+  const [selectedTicker, setSelectedTicker] = useState<string | null>(null);
 
   return (
     <div className="h-screen grid grid-rows-[auto_1fr] bg-terminal-bg">
       <Header />
       <div className="grid grid-cols-[1fr_360px] gap-2 p-2 overflow-hidden">
         {/* Left column */}
-        <div className="grid grid-rows-[200px_1fr_200px] gap-2 overflow-hidden">
-          <Placeholder label="Watchlist" />
-          <Placeholder label="Main Chart" />
+        <div className="grid grid-rows-[240px_1fr_200px] gap-2 overflow-hidden">
+          <Watchlist
+            onSelectTicker={setSelectedTicker}
+            selectedTicker={selectedTicker}
+          />
+          <MainChart ticker={selectedTicker} />
           <div className="grid grid-cols-2 gap-2">
             <Placeholder label="Portfolio Heatmap" />
             <Placeholder label="P&L Chart" />
