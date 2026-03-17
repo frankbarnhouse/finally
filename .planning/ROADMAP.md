@@ -94,10 +94,11 @@ Plans:
   1. Running the start script builds (if needed) and launches a single Docker container serving the app on port 8000
   2. The app is fully functional inside the container — prices stream, trades execute, chat works, all UI panels render
   3. Stopping and restarting the container preserves the SQLite database (portfolio state, trade history, chat history) via Docker volume
-**Plans**: TBD
+**Plans:** 2 plans
 
 Plans:
-- [ ] 05-01: TBD
+- [ ] 05-01-PLAN.md — Multi-stage Dockerfile, .dockerignore, .env.example, litellm dependency fix, static file serving
+- [ ] 05-02-PLAN.md — Start/stop scripts for macOS/Linux (bash) and Windows (PowerShell)
 
 ### Phase 6: Testing
 **Goal**: Core functionality is covered by automated tests that catch regressions
@@ -126,5 +127,5 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 2. Portfolio and Watchlist APIs | 0/3 | Complete    | 2026-03-16 |
 | 3. LLM Chat Integration | 2/2 | Complete    | 2026-03-16 |
 | 4. Trading Terminal Frontend | 4/4 | Complete    | 2026-03-17 |
-| 5. Docker and Scripts | 0/1 | Not started | - |
+| 5. Docker and Scripts | 0/2 | Not started | - |
 | 6. Testing | 0/3 | Not started | - |
