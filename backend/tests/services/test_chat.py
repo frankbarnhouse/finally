@@ -196,3 +196,77 @@ async def test_messages_stored_in_db(db, price_cache, data_source):
     assert rows[0][1] == "Hello there"
     assert rows[1][0] == "assistant"
     assert len(rows[1][1]) > 0
+
+
+def test_chat_response_model_minimal():
+    """ChatResponse(message='hi') parses with empty trades and watchlist_changes."""
+    resp = ChatResponse(message="hi")
+    assert resp.message == "hi"
+    assert resp.trades == []
+    assert resp.watchlist_changes == []
+
+
+def test_chat_response_model_with_actions():
+    """ChatResponse with trades and watchlist_changes parses correctly."""
+    resp = ChatResponse(
+        message="Done",
+        trades=[TradeAction(ticker="AAPL", side="buy", quantity=5)],
+        watchlist_changes=[WatchlistChange(ticker="PYPL", action="add")],
+    )
+    assert len(resp.trades) == 1
+    assert resp.trades[0].ticker == "AAPL"
+    assert len(resp.watchlist_changes) == 1
+    assert resp.watchlist_changes[0].ticker == "PYPL"
+
+
+def test_chat_response_model_validate_json_minimal():
+    """ChatResponse.model_validate_json with minimal JSON succeeds with defaults."""
+    resp = ChatResponse.model_validate_json('{"message":"hi"}')
+    assert resp.message == "hi"
+    assert resp.trades == []
+    assert resp.watchlist_changes == []
+
+
+def test_chat_response_model_validate_json_malformed():
+    """ChatResponse.model_validate_json with malformed JSON raises ValidationError."""
+    from pydantic import ValidationError
+
+    with pytest.raises(ValidationError):
+        ChatResponse.model_validate_json("not json")
+
+
+async def test_llm_exception_returns_error_message(db, price_cache, data_source, monkeypatch):
+    """When LLM call raises, response contains error message."""
+    monkeypatch.setenv("LLM_MOCK", "false")
+
+    async def failing_acompletion(*args, **kwargs):
+        raise RuntimeError("API down")
+
+    import app.services.chat as chat_mod
+    monkeypatch.setattr(chat_mod, "acompletion", failing_acompletion)
+
+    result = await handle_chat_message("Hello", price_cache, data_source)
+    assert "error" in result["message"].lower()
+
+
+async def test_mock_sell_triggers_trade(db, price_cache, data_source):
+    """Send 'sell some AAPL' with position in DB, verify sell trade executed."""
+    now = "2026-03-16T00:00:00+00:00"
+    await db.execute(
+        "INSERT INTO positions (user_id, ticker, quantity, avg_cost, updated_at) VALUES (?, ?, ?, ?, ?)",
+        ("default", "AAPL", 10, 180.0, now),
+    )
+    await db.commit()
+
+    result = await handle_chat_message("sell some AAPL", price_cache, data_source)
+    assert len(result["actions"]["trades"]) > 0
+    trade = result["actions"]["trades"][0]
+    assert trade["side"] == "sell"
+
+    # Verify position quantity decreased
+    cursor = await db.execute(
+        "SELECT quantity FROM positions WHERE user_id = 'default' AND ticker = 'AAPL'"
+    )
+    row = await cursor.fetchone()
+    # Mock sells 10 of 10, so position should be closed (no row)
+    assert row is None
