@@ -276,3 +276,73 @@ async def test_trade_triggers_snapshot(db, price_cache):
     )
     row = await cursor.fetchone()
     assert row[0] >= 1
+
+
+async def test_buy_fractional_shares(db, price_cache):
+    """Buy 2.5 shares of AAPL at 190.50, verify position and cash."""
+    result, error = await execute_trade(price_cache, "AAPL", "buy", 2.5)
+    assert error is None
+    assert result["position"]["quantity"] == 2.5
+    assert result["position"]["avg_cost"] == 190.50
+    # 2.5 * 190.50 = 476.25
+    assert result["cash_balance"] == pytest.approx(10000.0 - 476.25, abs=0.01)
+
+
+async def test_sell_fractional_shares(db, price_cache):
+    """Insert position qty=10.5, sell 3.5, verify remaining=7.0."""
+    now = "2026-03-16T00:00:00+00:00"
+    await db.execute(
+        "INSERT INTO positions (user_id, ticker, quantity, avg_cost, updated_at) VALUES (?, ?, ?, ?, ?)",
+        ("default", "AAPL", 10.5, 180.0, now),
+    )
+    await db.commit()
+
+    result, error = await execute_trade(price_cache, "AAPL", "sell", 3.5)
+    assert error is None
+    assert result["position"]["quantity"] == 7.0
+    # 3.5 * 190.50 = 666.75
+    assert result["cash_balance"] == pytest.approx(10000.0 + 666.75, abs=0.01)
+
+
+async def test_trade_no_price_available(db, price_cache):
+    """Trade on ticker not in price_cache returns error."""
+    result, error = await execute_trade(price_cache, "UNKNOWN", "buy", 10)
+    assert result is None
+    assert "No price available" in error
+
+
+async def test_trade_invalid_side(db, price_cache):
+    """Trade with side='short' returns error."""
+    result, error = await execute_trade(price_cache, "AAPL", "short", 10)
+    assert result is None
+    assert "Invalid side" in error
+
+
+async def test_buy_exactly_all_cash(db, price_cache):
+    """Set cash=1905.00, buy 10 AAPL at 190.50, verify success with cash=0."""
+    await db.execute("UPDATE users_profile SET cash_balance = 1905.00 WHERE id = 'default'")
+    await db.commit()
+
+    result, error = await execute_trade(price_cache, "AAPL", "buy", 10)
+    assert error is None
+    assert result["cash_balance"] == pytest.approx(0.0, abs=0.01)
+    assert result["position"]["quantity"] == 10
+
+
+async def test_sell_partial_then_close(db, price_cache):
+    """Sell 5 of 10, then sell remaining 5, verify position=None on second."""
+    now = "2026-03-16T00:00:00+00:00"
+    await db.execute(
+        "INSERT INTO positions (user_id, ticker, quantity, avg_cost, updated_at) VALUES (?, ?, ?, ?, ?)",
+        ("default", "AAPL", 10, 180.0, now),
+    )
+    await db.commit()
+
+    result1, error1 = await execute_trade(price_cache, "AAPL", "sell", 5)
+    assert error1 is None
+    assert result1["position"] is not None
+    assert result1["position"]["quantity"] == 5
+
+    result2, error2 = await execute_trade(price_cache, "AAPL", "sell", 5)
+    assert error2 is None
+    assert result2["position"] is None
