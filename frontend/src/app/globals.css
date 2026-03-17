@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-terminal-bg: #0d1117;
+  --color-terminal-surface: #161b22;
+  --color-terminal-border: #21262d;
+  --color-terminal-text: #c9d1d9;
+  --color-terminal-muted: #8b949e;
+  --color-accent-yellow: #ecad0a;
+  --color-accent-blue: #209dd7;
+  --color-accent-purple: #753991;
+  --color-profit: #27ae60;
+  --color-loss: #e74c3c;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}
+
+.price-flash-up {
+  background-color: rgba(39, 174, 96, 0.3);
+  transition: background-color 0.5s ease-out;
+}
+.price-flash-down {
+  background-color: rgba(231, 76, 60, 0.3);
+  transition: background-color 0.5s ease-out;
+}
+.price-flash-none {
+  background-color: transparent;
+  transition: background-color 0.5s ease-out;
+}
