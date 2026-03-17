@@ -17,7 +17,7 @@ Decimal phases appear between their surrounding integers in numeric order.
 - [x] **Phase 3: LLM Chat Integration** - AI assistant with portfolio context, structured outputs, auto-execution, and mock mode (completed 2026-03-16)
 - [x] **Phase 4: Trading Terminal Frontend** - Dark Bloomberg-inspired UI with live prices, charts, portfolio visualizations, trade bar, and chat panel (completed 2026-03-17)
 - [x] **Phase 5: Docker and Scripts** - Multi-stage Dockerfile, start/stop scripts, single-container deployment (completed 2026-03-17)
-- [ ] **Phase 6: Testing** - Backend unit tests, frontend unit tests, Playwright E2E tests
+- [x] **Phase 6: Testing** - Backend unit tests, frontend unit tests, Playwright E2E tests (completed 2026-03-17)
 
 ## Phase Details
 
@@ -109,7 +109,7 @@ Plans:
   2. Backend unit tests verify LLM structured output parsing handles valid schemas, malformed responses, and failed action reporting
   3. Frontend unit tests verify key component behaviors (price flash animation triggers, portfolio display calculations)
   4. Playwright E2E tests run against the Docker container with LLM_MOCK=true and verify core user flows (prices streaming, watchlist CRUD, buy/sell, chat interaction)
-**Plans:** 3 plans
+**Plans:** 3/3 plans complete
 
 Plans:
 - [ ] 06-01-PLAN.md — Backend unit tests for trade edge cases and LLM structured output parsing
@@ -128,4 +128,4 @@ Phases execute in numeric order: 1 -> 2 -> 3 -> 4 -> 5 -> 6
 | 3. LLM Chat Integration | 2/2 | Complete    | 2026-03-16 |
 | 4. Trading Terminal Frontend | 4/4 | Complete    | 2026-03-17 |
 | 5. Docker and Scripts | 0/2 | Complete    | 2026-03-17 |
-| 6. Testing | 0/3 | Not started | - |
+| 6. Testing | 0/3 | Complete    | 2026-03-17 |
