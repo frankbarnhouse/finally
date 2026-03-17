@@ -49,9 +49,9 @@ Requirements for initial release. Each maps to roadmap phases.
 - [x] **UI-06**: Portfolio heatmap (treemap) sized by position weight, colored by P&L
 - [x] **UI-07**: P&L line chart showing portfolio value over time from snapshots
 - [x] **UI-08**: Positions table: ticker, quantity, avg cost, current price, unrealized P&L, % change
-- [ ] **UI-09**: Trade bar with ticker input, quantity input, buy button, sell button
-- [ ] **UI-10**: AI chat panel with message input, scrolling history, loading indicator
-- [ ] **UI-11**: Inline trade and watchlist action confirmations rendered in chat messages
+- [x] **UI-09**: Trade bar with ticker input, quantity input, buy button, sell button
+- [x] **UI-10**: AI chat panel with message input, scrolling history, loading indicator
+- [x] **UI-11**: Inline trade and watchlist action confirmations rendered in chat messages
 - [x] **UI-12**: Header with live portfolio total value, cash balance, and connection status dot
 
 ### Infrastructure
@@ -128,9 +128,9 @@ Which phases cover which requirements. Updated during roadmap creation.
 | UI-06 | Phase 4 | Complete |
 | UI-07 | Phase 4 | Complete |
 | UI-08 | Phase 4 | Complete |
-| UI-09 | Phase 4 | Pending |
-| UI-10 | Phase 4 | Pending |
-| UI-11 | Phase 4 | Pending |
+| UI-09 | Phase 4 | Complete |
+| UI-10 | Phase 4 | Complete |
+| UI-11 | Phase 4 | Complete |
 | UI-12 | Phase 4 | Complete |
 | INFRA-01 | Phase 5 | Pending |
 | INFRA-02 | Phase 5 | Pending |
