@@ -57,8 +57,8 @@ Requirements for initial release. Each maps to roadmap phases.
 ### Infrastructure
 
 - [ ] **INFRA-01**: Multi-stage Dockerfile (latest stable Node → latest stable Python)
-- [ ] **INFRA-02**: Start/stop shell scripts for macOS/Linux
-- [ ] **INFRA-03**: Start/stop PowerShell scripts for Windows
+- [x] **INFRA-02**: Start/stop shell scripts for macOS/Linux
+- [x] **INFRA-03**: Start/stop PowerShell scripts for Windows
 - [x] **INFRA-04**: Health check endpoint (GET /api/health)
 
 ### Testing
@@ -133,8 +133,8 @@ Which phases cover which requirements. Updated during roadmap creation.
 | UI-11 | Phase 4 | Complete |
 | UI-12 | Phase 4 | Complete |
 | INFRA-01 | Phase 5 | Pending |
-| INFRA-02 | Phase 5 | Pending |
-| INFRA-03 | Phase 5 | Pending |
+| INFRA-02 | Phase 5 | Complete |
+| INFRA-03 | Phase 5 | Complete |
 | INFRA-04 | Phase 2 | Complete |
 | TEST-01 | Phase 6 | Pending |
 | TEST-02 | Phase 6 | Pending |
