@@ -65,7 +65,7 @@ Requirements for initial release. Each maps to roadmap phases.
 
 - [ ] **TEST-01**: Backend unit tests for trade execution logic and edge cases
 - [ ] **TEST-02**: Backend unit tests for LLM structured output parsing
-- [ ] **TEST-03**: Frontend unit tests for key components (price flash, portfolio display)
+- [x] **TEST-03**: Frontend unit tests for key components (price flash, portfolio display)
 - [ ] **TEST-04**: E2E tests with Playwright using LLM mock mode
 
 ## v2 Requirements
@@ -138,7 +138,7 @@ Which phases cover which requirements. Updated during roadmap creation.
 | INFRA-04 | Phase 2 | Complete |
 | TEST-01 | Phase 6 | Pending |
 | TEST-02 | Phase 6 | Pending |
-| TEST-03 | Phase 6 | Pending |
+| TEST-03 | Phase 6 | Complete |
 | TEST-04 | Phase 6 | Pending |
 
 **Coverage:**
