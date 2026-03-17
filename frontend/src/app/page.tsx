@@ -5,14 +5,11 @@ import { useSSE } from "@/hooks/useSSE";
 import { Header } from "@/components/Header";
 import { Watchlist } from "@/components/Watchlist";
 import { MainChart } from "@/components/MainChart";
-
-function Placeholder({ label }: { label: string }) {
-  return (
-    <div className="bg-terminal-surface border border-terminal-border rounded p-3 flex items-center justify-center">
-      <span className="text-terminal-muted text-sm">{label}</span>
-    </div>
-  );
-}
+import { TradeBar } from "@/components/TradeBar";
+import { PortfolioHeatmap } from "@/components/PortfolioHeatmap";
+import { PnLChart } from "@/components/PnLChart";
+import { PositionsTable } from "@/components/PositionsTable";
+import { ChatPanel } from "@/components/ChatPanel";
 
 export default function Home() {
   useSSE();
@@ -21,24 +18,25 @@ export default function Home() {
   return (
     <div className="h-screen grid grid-rows-[auto_1fr] bg-terminal-bg">
       <Header />
-      <div className="grid grid-cols-[1fr_360px] gap-2 p-2 overflow-hidden">
+      <div className="grid lg:grid-cols-[1fr_350px] grid-cols-1 gap-1 p-1 overflow-hidden">
         {/* Left column */}
-        <div className="grid grid-rows-[240px_1fr_200px] gap-2 overflow-hidden">
-          <Watchlist
-            onSelectTicker={setSelectedTicker}
-            selectedTicker={selectedTicker}
-          />
-          <MainChart ticker={selectedTicker} />
-          <div className="grid grid-cols-2 gap-2">
-            <Placeholder label="Portfolio Heatmap" />
-            <Placeholder label="P&L Chart" />
+        <div className="flex flex-col gap-1 overflow-y-auto">
+          <div className="grid grid-cols-[280px_1fr] gap-1 min-h-[260px]">
+            <Watchlist
+              onSelectTicker={setSelectedTicker}
+              selectedTicker={selectedTicker}
+            />
+            <MainChart ticker={selectedTicker} />
           </div>
+          <TradeBar />
+          <div className="grid grid-cols-2 gap-1">
+            <PortfolioHeatmap />
+            <PnLChart />
+          </div>
+          <PositionsTable />
         </div>
-        {/* Right column */}
-        <div className="grid grid-rows-[1fr_auto] gap-2 overflow-hidden">
-          <Placeholder label="Chat Panel" />
-          <Placeholder label="Positions / Trade Bar" />
-        </div>
+        {/* Right column — Chat Panel */}
+        <ChatPanel />
       </div>
     </div>
   );
