@@ -2,9 +2,10 @@
 
 import asyncio
 from contextlib import asynccontextmanager
+from pathlib import Path
 
 from fastapi import FastAPI
-from fastapi.staticfiles import StaticFiles  # noqa: F401 — used in Phase 4
+from fastapi.staticfiles import StaticFiles
 
 from app.api.chat import create_chat_router
 from app.api.health import create_health_router
@@ -53,3 +54,7 @@ app.include_router(create_portfolio_router(price_cache))
 app.include_router(create_watchlist_router(price_cache, data_source))
 app.include_router(create_chat_router(price_cache, data_source))
 app.include_router(create_health_router())
+
+static_dir = Path(__file__).resolve().parent.parent / "static"
+if static_dir.is_dir():
+    app.mount("/", StaticFiles(directory=str(static_dir), html=True), name="static")
