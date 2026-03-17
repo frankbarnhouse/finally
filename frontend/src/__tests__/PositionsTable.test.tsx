@@ -59,4 +59,46 @@ describe("PositionsTable", () => {
     expect(profitElements.length).toBeGreaterThan(0);
     expect(lossElements.length).toBeGreaterThan(0);
   });
+
+  it("calculates and displays P&L percentage", () => {
+    const positions = [
+      { ticker: "AAPL", quantity: 10, avg_cost: 150, current_price: 190, unrealized_pnl: 400 },
+    ];
+    mockUsePortfolioStore.mockReturnValue(positions);
+    mockUsePriceStore.mockReturnValue({
+      AAPL: { price: 190 },
+    });
+
+    render(<PositionsTable />);
+    // (10*190 - 10*150) / (10*150) * 100 = 26.67%
+    expect(screen.getByText("26.67%")).toBeInTheDocument();
+  });
+
+  it("displays negative P&L percentage", () => {
+    const positions = [
+      { ticker: "GOOGL", quantity: 5, avg_cost: 160, current_price: 140, unrealized_pnl: -100 },
+    ];
+    mockUsePortfolioStore.mockReturnValue(positions);
+    mockUsePriceStore.mockReturnValue({
+      GOOGL: { price: 140 },
+    });
+
+    render(<PositionsTable />);
+    // (5*140 - 5*160) / (5*160) * 100 = -12.50%
+    expect(screen.getByText("-12.50%")).toBeInTheDocument();
+  });
+
+  it("renders current prices from price store", () => {
+    const positions = [
+      { ticker: "AAPL", quantity: 10, avg_cost: 150, current_price: 190, unrealized_pnl: 400 },
+    ];
+    mockUsePortfolioStore.mockReturnValue(positions);
+    mockUsePriceStore.mockReturnValue({
+      AAPL: { price: 195 },
+    });
+
+    render(<PositionsTable />);
+    // Price store price (195) overrides position current_price (190)
+    expect(screen.getByText("$195.00")).toBeInTheDocument();
+  });
 });

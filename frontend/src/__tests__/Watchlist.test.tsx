@@ -101,4 +101,30 @@ describe("Watchlist", () => {
     fireEvent.click(screen.getByText("AAPL"));
     expect(onSelectTicker).toHaveBeenCalledWith("AAPL");
   });
+
+  it("displays green flash class for uptick direction", () => {
+    render(
+      <Watchlist onSelectTicker={onSelectTicker} selectedTicker={null} />,
+    );
+    const aaplPrice = screen.getByText("191.00");
+    expect(aaplPrice.className).toContain("price-flash-up");
+  });
+
+  it("displays red flash class for downtick direction", () => {
+    render(
+      <Watchlist onSelectTicker={onSelectTicker} selectedTicker={null} />,
+    );
+    const googlPrice = screen.getByText("174.00");
+    expect(googlPrice.className).toContain("price-flash-down");
+  });
+
+  it("shows price change values for each ticker", () => {
+    render(
+      <Watchlist onSelectTicker={onSelectTicker} selectedTicker={null} />,
+    );
+    expect(screen.getByText(/\+0\.50/)).toBeInTheDocument();
+    expect(screen.getByText(/\+0\.26%/)).toBeInTheDocument();
+    expect(screen.getByText(/-1\.25/)).toBeInTheDocument();
+    expect(screen.getByText(/-0\.71%/)).toBeInTheDocument();
+  });
 });
